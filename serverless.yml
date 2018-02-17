@@ -6,10 +6,36 @@ provider:
   stage: dev
   region: ap-northeast-2
 
+
+
 functions:
-  hello:
-    handler: handler.hello
-    events: 
+  createStory:
+    handler: src/stories.createStory
+    events:
       - http:
-          path: hello
+          path: stories
+          method: post
+  readStories:
+    handler: src/stories.readStories
+    events:
+      - http:
+          path: stories
           method: get
+  readStory:
+    handler: src/stories.readStory
+    events:
+      - http:
+          path: stories/{id}
+          method: get
+  updateStory:
+    handler: src/stories.updateStory
+    events:
+      - http:
+          path: stories/{id}
+          method: patch
+  deleteStory:
+    handler: src/stories.deleteStory
+    events:
+      - http:
+          path: stories/{id}
+          method: delete
